@@ -5,10 +5,10 @@ body {
 }
 
 .grid-card {
-  @apply bg-amber-50 border rounded-2xl p-4 shadow hover:shadow-xl transition-transform duration-300 hover:scale-107 flex flex-col items-center cursor-pointer;
+  @apply bg-amber-50 border rounded-2xl p-4 shadow hover:shadow-xl transition-transform duration-300 hover:scale-107 flex flex-col items-center cursor-pointer min-h-[480px] min-w-[270px];
 }
 .card-img {
-  @apply bg-gray-200 w-full max-h-full  object-cover rounded-xl mb-2;
+  @apply bg-gray-200 w-full min-h-[300px] max-h-full  object-cover rounded-xl mb-2;
 }
 .product-info {
   @apply bg-gray-800 rounded-xl flex flex-col  py-3 px-4  w-full text-center text-lg;
@@ -19,4 +19,11 @@ body {
 
 .category-titles {
   @apply bg-gray-800 rounded-2xl text-5xl text-gray-100 p-4 font-bold text-center;
+}
+
+.prev-next-buttons {
+  @apply absolute  top-1/2 -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow cursor-pointer hover:scale-110 hover:shadow-xl  transition-transform duration-300;
+}
+.category-button{
+  @apply cursor-pointer hover:bg-gray-100 hover:text-gray-800 px-2
 }

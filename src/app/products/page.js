@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import Link from "next/link";
+import { categoryNames } from "@/data/categoryNames";
 import ProductCard from "@/components/ProductCard";
 
 import React, { useEffect, useState } from "react";
@@ -23,61 +23,7 @@ export default function ProductsPage() {
     fetchProducts();
   }, []);
 
-  const categoryNames = [
-    {
-      title: "Beauty",
-      categories: ["beauty", "skincare", "fragrances"],
-    },
-    {
-      title: "Watches",
-      categories: ["mens-watches", "womens-watches"],
-    },
-    {
-      title: "Groceries",
-      categories: ["groceries"],
-    },
-    {
-      title: "Shoes",
-      categories: ["mens-shoes", "womens-shoes"],
-    },
-    {
-      title: "Rides",
-      categories: ["vehicle", "motorcycle"],
-    },
-    {
-      title: "Men's Fashion",
-      categories: ["mens-shirts", "mens-shoes", "mens-watches", "sunglasses"],
-    },
-
-    {
-      title: "Women's Fashion",
-      categories: [
-        "womens-dresses",
-        "womens-shoes",
-        "womens-watches",
-        "womens-bags",
-        "womens-jewellery",
-        "sunglasses",
-      ],
-    },
-    {
-      title: "Sports",
-      categories: ["sports-accessories"],
-    },
-    {
-      title: "Home & Furniture",
-      categories: [
-        "home-decoration",
-        "furniture",
-        "lighting",
-        "kitchen-accessories",
-      ],
-    },
-    {
-      title: "Electronics",
-      categories: ["smartphones", "laptops", "tablets", "mobile-accessories"],
-    },
-  ];
+  
 
   return (
     <div className="max-w-7xl mx-auto p-8 ">

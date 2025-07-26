@@ -1,16 +1,18 @@
+"use client";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { categoryNames } from "@/data/categoryNames";
 import {
   User,
   ShoppingBag,
   BoxesIcon,
   Search,
   Store,
-  Package,
-  ShoppingCart,
   CreditCard,
 } from "lucide-react";
 
 export default function Header() {
+  const router = useRouter();
   return (
     <header className="text-[20px] bg-gray-800 h-[76px] text-white py-4  w-full fixed top-0 z-50">
       <nav className="grid grid-cols-[auto_1fr_auto] items-center  mx-10 ">
@@ -23,11 +25,11 @@ export default function Header() {
           <input
             type="text"
             placeholder="Search products"
-            className="w-full px-4 py-2 rounded text-white bg-gray-700 outline-none"
+            className="w-full px-4 py-2 rounded-lg text-white bg-gray-700 outline-none"
           />
           <button
             type="button"
-            className="header-icons p-2 rounded text-white cursor-pointer"
+            className="header-icons p-2 rounded- text-white cursor-pointer"
           >
             <Search size={32} />
           </button>
@@ -48,6 +50,17 @@ export default function Header() {
           </Link>
         </div>
       </nav>
+      <div className=" mt-3 flex justify-between border-t-1 bg-gray-800 py-1 px-2">
+        {categoryNames.map((item) => (
+          <button
+            key={item.title}
+            className="category-button"
+            onClick={() => router.push(`/category/${item.categories[0]}`)}
+          >
+            {item.title}
+          </button>
+        ))}
+      </div>
     </header>
   );
 }

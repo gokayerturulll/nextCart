@@ -52,7 +52,7 @@ export default function HomePage() {
         ))}
       </div>
 
-      <h1 className="category-titles mb-4">Discounted Products</h1>
+      <h1 className="category-titles mb-4">New Arrivals</h1>
       <div className="grid grid-cols-4 gap-5">
         {discountedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
