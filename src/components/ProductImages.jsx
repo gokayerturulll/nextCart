@@ -15,19 +15,19 @@ export default function ProductImages({ images }) {
   };
 
   return (
-    <div className="relative min-w-[420px] min-h-[300px] mx-auto">
+    <div className="relative h-[600px] w-[470px] mx-auto">
       <img
         src={images[current]}
         alt={`image-${current}`}
-        className=" bg-gray-200 w-full h-full object-cover rounded-xl border"
+        className="h-[600px] bg-white w-full  object-cover rounded-xl shadow-xl"
       />
 
       <button onClick={prevImage} className="prev-next-buttons left-2">
-        <FaChevronLeft />
+        <FaChevronLeft size={20} />
       </button>
 
       <button onClick={nextImage} className="prev-next-buttons right-2 ">
-        <FaChevronRight />
+        <FaChevronRight size={20} />
       </button>
     </div>
   );

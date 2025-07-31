@@ -7,52 +7,68 @@ export default function ProductCard({ product }) {
   );
 
   return (
-    <Link href={`/products/${product.id}`}>
-      <div className="grid-card">
-        <div className="flex flex-col items-center bg-gray-800 rounded-xl p-2 mb-2 w-full">
-          <div className="flex p-1 gap-2">
-            {Array.from({ length: 5 }).map((_, i) => {
-              if (rating >= i + 1) {
-                return <FaStar key={i} className="text-yellow-400" size={20} />;
-              } else if (rating >= i + 0.5) {
-                return (
-                  <FaStarHalfAlt
-                    key={i}
-                    className="text-yellow-400"
-                    size={20}
-                  />
-                );
-              } else {
-                return (
-                  <FaRegStar key={i} className="text-yellow-400" size={20} />
-                );
-              }
-            })}
-          </div>
+    <div className="item-card relative ">
+      <span
+        className={` absolute right-2 py-1 px-3 text-center rounded-2xl font-bold text-sm
+                    ${
+                      product.availabilityStatus === "In Stock"
+                        ? "bg-green-100 text-green-600"
+                        : product.availabilityStatus === "Limited Stock"
+                        ? "bg-blue-100 text-blue-600"
+                        : "bg-red-100 text-red-600"
+                    }`}
+      >
+        {product.availabilityStatus}
+      </span>
 
-          <span className="text-gray-200 text-[17px] font-bold ">
-            {product.rating.toFixed(1)}
-          </span>
+      <img
+        src={product.thumbnail}
+        alt={product.title}
+        loading="lazy"
+        className="card-img"
+      />
+
+      <div className="product-info">
+        <h3 className="font-semibold">{product.title}</h3>
+
+        <div className="flex  gap-1 justify-center p-2 mb-2">
+          {Array.from({ length: 5 }).map((_, i) => {
+            if (rating >= i + 1) {
+              return <FaStar key={i} className="text-yellow-400" size={20} />;
+            } else if (rating >= i + 0.5) {
+              return (
+                <FaStarHalfAlt key={i} className="text-yellow-400" size={20} />
+              );
+            } else {
+              return (
+                <FaRegStar key={i} className="text-yellow-400" size={20} />
+              );
+            }
+          })}
         </div>
 
-        <img
-          src={product.thumbnail}
-          alt={product.title}
-          loading="lazy"
-          className="card-img"
-        />
+        <div className="flex justify-evenly">
+          <p className="text-red-600 line-through">{product.price} $</p>
+          <p className="text-gray-700 text-2xl font-bold">{discountedPrice}$</p>
+        </div>
 
-        <div className="product-info">
-          <h3 className="text-white font-semibold text-center  ">
-            {product.title}
-          </h3>
+        <div className="flex justify-evenly items-center mt-2 gap-2">
+          <Link href={`/products/${product.id}`}>
+            <button className="px-4 py-1 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700 transition cursor-pointer">
+              Details
+            </button>
+          </Link>
 
-          <div className="flex justify-evenly">
-            <p className="text-red-600 line-through">{product.price} $</p>
-            <p className="text-gray-200 text-xl">{discountedPrice}$</p>
-          </div>
+          <button
+            className=" bg-green-600 text-white rounded-lg text-sm hover:bg-green-500 transition cursor-pointer px-4 py-1"
+            onClick={(e) => {
+              e.preventDefault(); // Link'e tıklamayı engeller
+            }}
+          >
+            Add Cart
+          </button>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

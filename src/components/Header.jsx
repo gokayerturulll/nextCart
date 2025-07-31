@@ -14,7 +14,7 @@ import {
 export default function Header() {
   const router = useRouter();
   return (
-    <header className="text-[20px] bg-gray-800 h-[76px] text-white py-4  w-full fixed top-0 z-50">
+    <header className="text-[20px] bg-gray-800 h-[75px] text-white py-4  w-full fixed top-0 z-50">
       <nav className="grid grid-cols-[auto_1fr_auto] items-center  mx-10 ">
         <Link href="/" className="flex items-center gap-2 text-[32px]">
           <Store size={32} />
