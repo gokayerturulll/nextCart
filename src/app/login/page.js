@@ -1,12 +1,10 @@
 "use client";
 import { useState } from "react";
 
-export default function RegisterPage() {
+export default function LoginPage() {
   const [form, setForm] = useState({
-    username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const [error, setError] = useState("");
@@ -19,18 +17,8 @@ export default function RegisterPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (
-      !form.username ||
-      !form.email ||
-      !form.password ||
-      !form.confirmPassword
-    ) {
+    if (!form.email || !form.password) {
       setError("Please fill in all fields.");
-      return;
-    }
-
-    if (form.password !== form.confirmPassword) {
-      setError("Passwords don't match.");
       return;
     }
 
@@ -45,7 +33,7 @@ export default function RegisterPage() {
         className="bg-white shadow-md rounded-xl p-8 w-full max-w-[450px]"
       >
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-          Register
+          Login
         </h2>
 
         {error && (
@@ -61,19 +49,7 @@ export default function RegisterPage() {
         )}
 
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Username</label>
-          <input
-            type="text"
-            name="username"
-            placeholder="Enter your username"
-            value={form.username}
-            onChange={handleChange}
-            className="register-login-form"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">E-mail</label>
+          <label className=" text-sm font-medium mb-1">E-mail</label>
           <input
             type="email"
             name="email"
@@ -85,7 +61,7 @@ export default function RegisterPage() {
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Password</label>
+          <label className=" text-sm font-medium mb-1">Password</label>
           <input
             type="password"
             name="password"
@@ -96,26 +72,27 @@ export default function RegisterPage() {
           />
         </div>
 
-        <div className="mb-6">
-          <label className="block text-sm font-medium mb-1">
-            Confirm Password
-          </label>
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm password"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            className="register-login-form"
-          />
+        <div className="flex justify-between mb-3 items-center">
+          <div className="flex gap-2 ">
+            <input type="checkbox" />
+            <span>Remember me</span>
+          </div>
+          <span>Forgot password</span>
         </div>
 
         <button
           type="submit"
           className="w-full bg-gray-800 text-white py-2 rounded-lg font-semibold hover:bg-gray-700 transition cursor-pointer"
         >
-          Register
+          Login
         </button>
+
+        <div className="flex text-sm p-2 justify-center gap-2 mt-3">
+          <span>Dont have an account ?</span>
+          <a className="text-blue-800" href="/register">
+            Sign Up
+          </a>
+        </div>
       </form>
     </div>
   );

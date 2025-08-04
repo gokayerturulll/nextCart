@@ -1,3 +1,5 @@
+"use client";
+import { use, useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import {
@@ -6,20 +8,27 @@ import {
   FaStar,
   FaStarHalfAlt,
   FaRegStar,
-  FaPlus,
-  FaMinus,
 } from "react-icons/fa";
 import ProductImages from "@/components/ProductImages";
+import { useCart } from "@/context/CartContext";
 
-export default async function ProductPage({ params }) {
-  const { id } = params;
+export default function ProductPage({ params }) {
+  const { id } = use(params);
   const currentId = parseInt(id);
+  const [product, setProduct] = useState(null);
 
-  const respond = await axios.get(`https://dummyjson.com/products/${id}`);
-  const product = respond.data;
-  const discountedPrice = Math.floor(
-    (product.price * (100 - product.discountPercentage)) / 100
-  );
+  useEffect(() => {
+    axios
+      .get(`https://dummyjson.com/products/${id}`)
+      .then((res) => setProduct(res.data));
+  }, [id]);
+
+  const { addToCart } = useCart();
+  if (!product) return <div>Loading...</div>;
+
+  const getDiscountedPrice = (price, discountPercentage) => {
+    return Math.floor((price * (100 - discountPercentage)) / 100);
+  };
 
   const nextId = currentId < 194 ? currentId + 1 : null;
   const prevId = currentId > 0 ? currentId - 1 : null;
@@ -45,7 +54,7 @@ export default async function ProductPage({ params }) {
 
         <div className="rounded-xl p-3 max-w-[750px]">
           {/* title and description */}
-          <div className="bg-white p-5 rounded-lg shadow mb-3">
+          <div className="bg-gray-50 p-5 rounded-lg shadow mb-3">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-2xl font-bold text-gray-800 ">
                 {product.title}
@@ -58,7 +67,7 @@ export default async function ProductPage({ params }) {
 
           {/* price and adding to cart */}
 
-          <div className="flex justify-between items-center bg-white py-4 px-5 mb-5 rounded-2xl shadow">
+          <div className="flex justify-between items-center bg-gray-50 py-4 px-5 mb-5 rounded-2xl shadow">
             {/* price */}
             <div className="flex gap-5">
               <span
@@ -77,27 +86,23 @@ export default async function ProductPage({ params }) {
                 {product.price}$
               </span>
               <span className="text-black text-2xl font-bold">
-                {discountedPrice}$
+                {getDiscountedPrice(product.price, product.discountPercentage)}$
               </span>
             </div>
 
             {/* cart */}
             <div className="flex gap-3 mb-2 items-center">
-              <button className="text-gray-200 bg-gray-800 p-2 rounded-full cursor-pointer">
-                <FaMinus size={15} />
-              </button>
-              <span className="text-black text-3xl font-bold">0</span>
-              <button className="text-gray-200 bg-gray-800 p-2 rounded-full cursor-pointer">
-                <FaPlus size={15} />
-              </button>
-              <button className=" inline-block text-gray-200 bg-gray-800 rounded-xl px-3 py-2 text-lg font-bold">
+              <button
+                onClick={() => addToCart(product)}
+                className=" inline-block text-gray-200 bg-gray-800 rounded-xl px-3 py-2 text-lg font-bold cursor-pointer"
+              >
                 Sepete Ekle
               </button>
             </div>
           </div>
 
           {/* comment section */}
-          <div className="bg-white shadow rounded-2xl p-3">
+          <div className="bg-gray-50 shadow rounded-2xl p-3">
             <h2 className="text-2xl font-bold mx-4">Comments</h2>
             {product.reviews.map((review, index) => (
               <div key={index} className="py-3  mb-2 mx-5 border-b">

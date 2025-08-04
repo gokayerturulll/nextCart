@@ -19,7 +19,7 @@ export default function ProductImages({ images }) {
       <img
         src={images[current]}
         alt={`image-${current}`}
-        className="h-[600px] bg-white w-full  object-cover rounded-xl shadow-xl"
+        className="h-[600px] bg-gray-50 w-full  object-cover rounded-xl shadow-xl"
       />
 
       <button onClick={prevImage} className="prev-next-buttons left-2">

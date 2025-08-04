@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { useCart } from "@/context/CartContext";
 export default function ProductCard({ product }) {
+  const { addToCart, cart } = useCart();
   const rating = Math.round(product.rating * 2) / 2;
   const discountedPrice = Math.floor(
     (product.price * (100 - product.discountPercentage)) / 100
@@ -61,9 +63,7 @@ export default function ProductCard({ product }) {
 
           <button
             className=" bg-green-600 text-white rounded-lg text-sm hover:bg-green-500 transition cursor-pointer px-4 py-1"
-            onClick={(e) => {
-              e.preventDefault(); // Link'e tıklamayı engeller
-            }}
+            onClick={() => addToCart(product)}
           >
             Add Cart
           </button>
