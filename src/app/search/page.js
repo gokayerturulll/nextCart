@@ -6,7 +6,9 @@ async function fetchSearchedProducts(query) {
     return [];
   }
   try {
-    const response = await axios.get(`https://dummyjson.com/products/search?q=${query}`);
+    const response = await axios.get(
+      `https://dummyjson.com/products/search?q=${query}`
+    );
     return response.data.products;
   } catch (error) {
     console.error("Failed to fetch products:", error);
@@ -23,7 +25,7 @@ export default async function SearchPage({ searchParams }) {
       {query ? (
         <>
           <h1 className="text-3xl font-bold mb-6">
-            Search Results for: <span className="text-gray-600">"{query}"</span>
+            Search Results for: <span className="text-gray-600">{query}</span>
           </h1>
           {products.length > 0 ? (
             <div className="grid  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -38,9 +40,9 @@ export default async function SearchPage({ searchParams }) {
           )}
         </>
       ) : (
-         <h1 className="text-3xl font-bold mb-6 text-center">
-            Please enter a search term to find products.
-          </h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">
+          Please enter a search term to find products.
+        </h1>
       )}
     </div>
   );
