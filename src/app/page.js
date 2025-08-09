@@ -43,7 +43,6 @@ export default function HomePage() {
 
   return (
     <div>
-      
       {/* banner */}
       <div className="w-full relative mb-10">
         <img
@@ -69,7 +68,7 @@ export default function HomePage() {
 
       {/* products */}
       <div className="container mx-auto p-4  sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 mb-10">
           {popularProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -77,7 +76,7 @@ export default function HomePage() {
 
         {/* email */}
 
-        <div className="bg-gray-100 mt-10 py-16 max-w-7xl mx-auto text-center px-4">
+        <div className="bg-gray-100 mt-10 py-16 max-w-full mx-auto text-center px-4 ">
           <h2 className="text-3xl font-bold">Join Our Newsletter</h2>
           <p className="mt-2 text-gray-600">
             Get 10% off on your first order and stay up-to-date with our latest

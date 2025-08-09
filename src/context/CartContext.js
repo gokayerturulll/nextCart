@@ -25,6 +25,10 @@ export function CartProvider({ children }) {
     setCart((prev) => prev.filter((item) => item.id !== productId));
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   const increaseQuantity = (productId) => {
     setCart((prev) =>
       prev.map((item) =>
@@ -53,6 +57,7 @@ export function CartProvider({ children }) {
         removeFromCart,
         increaseQuantity,
         decreaseQuantity,
+        clearCart,
       }}
     >
       {children}

@@ -18,7 +18,7 @@ export default function CheckoutPage() {
     cardCvc: "",
   });
 
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
@@ -38,7 +38,7 @@ export default function CheckoutPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (
       !form.email ||
       !form.firstName ||
@@ -56,17 +56,28 @@ export default function CheckoutPage() {
     }
     setSuccess(true);
     setError("");
+    clearCart();
   };
 
+  if (success) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen text-center px-4">
+        <h2 className="text-3xl font-bold text-green-600">Thank You!</h2>
+        <p className="mt-2 text-lg">Your order has been placed successfully.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-full mx-auto py-10 flex justify-center gap-4 pt-[100px]">
+    <div className="max-w-7xl mx-auto py-10 flex flex-col-reverse lg:flex-row justify-center gap-8 pt-[100px] px-4">
       {/* Checkout form */}
+
       <form
-        className="flex flex-col gap-5 bg-white p-6 rounded-2xl shadow w-[500px]"
+        className="flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md w-full lg:w-3/5"
         onSubmit={handleSubmit}
       >
         {/* CONTACT */}
-        <h2 className="text-2xl font-bold mb-2">Contact</h2>
+        <h2 className="text-2xl font-bold">Contact</h2>
         <input
           type="email"
           name="email"
@@ -77,8 +88,9 @@ export default function CheckoutPage() {
         />
 
         {/* DELIVERY */}
-        <h2 className="text-2xl font-bold mt-4 mb-2">Delivery</h2>
-        <div className="flex gap-3 mb-3">
+        <h2 className="text-2xl font-bold mt-4">Delivery</h2>
+
+        <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="text"
             name="firstName"
@@ -112,7 +124,7 @@ export default function CheckoutPage() {
           placeholder="Apartment, suite, etc. (optional)"
           className="checkout-form"
         />
-        <div className="flex gap-3 mb-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="text"
             name="city"
@@ -140,17 +152,13 @@ export default function CheckoutPage() {
         />
 
         {/* PAYMENT */}
-        <h2 className="text-2xl font-bold mt-4 mb-2">Payment</h2>
+        <h2 className="text-2xl font-bold mt-4">Payment</h2>
         {error && (
-          <p className="mb-4 text-red-600 font-medium bg-red-100 px-4 py-2 rounded">
+          <p className="text-red-600 font-medium bg-red-100 p-3 rounded">
             {error}
           </p>
         )}
-        {success && (
-          <p className="mb-4 text-green-600 font-medium bg-green-100 px-4 py-2 rounded">
-            Payment successfully completed!
-          </p>
-        )}
+
         <input
           name="name"
           value={form.name}
@@ -168,7 +176,7 @@ export default function CheckoutPage() {
           inputMode="numeric"
           pattern="\d*"
         />
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <input
             name="cardDate"
             value={form.cardDate}
@@ -176,8 +184,6 @@ export default function CheckoutPage() {
             className="checkout-form"
             placeholder="MM/YY"
             maxLength={5}
-            inputMode="numeric"
-            pattern="\d*"
           />
           <input
             name="cardCvc"
@@ -190,41 +196,45 @@ export default function CheckoutPage() {
             pattern="\d*"
           />
         </div>
-        <button className="w-full bg-gray-800 text-white p-3 rounded-xl font-semibold hover:bg-gray-700 transition cursor-pointer mt-2">
+        <button className="w-full bg-gray-800 text-white p-4 rounded-xl font-semibold hover:bg-gray-700 transition cursor-pointer mt-2 text-lg">
           Complete Order
         </button>
       </form>
 
       {/* ORDER SUMMARY */}
-      <div className="w-[500px] bg-white p-6 rounded-2xl shadow space-y-4 h-fit">
-        <h2 className="text-xl font-bold">Order Summary</h2>
-        {cart.map((item, id) => (
-          <ul key={item.id}>
-            <li>
-              <div className="grid grid-cols-3 gap-3 text-center">
-                <div className="relative">
+
+      <div className="w-full lg:w-2/5 bg-white p-6 rounded-lg shadow-md space-y-4 h-fit">
+        <h2 className="text-2xl font-bold border-b pb-4">Order Summary</h2>
+        <ul className="space-y-4">
+          {cart.map((item) => (
+            <li
+              key={item.id}
+              className="flex items-center justify-between gap-4 border-b pb-4 last:border-b-0"
+            >
+              <div className="flex items-center gap-4">
+                <div className="relative flex-shrink-0">
                   <img
                     src={item.thumbnail}
                     alt={item.title}
-                    className=" bg-gray-300 w-15 h-20 object-cover "
+                    className="w-16 h-16 object-cover rounded-md bg-gray-100"
                   />
-                  <span className="absolute  bottom-15 left-10 rounded-full text-xs bg-red-600 text-gray-100 px-2 py-1 ">
+                  <span className="absolute -top-2 -right-2 flex items-center justify-center w-6 h-6 rounded-full text-xs bg-gray-800 text-white">
                     {item.quantity}
                   </span>
                 </div>
-                <span className=" text-xl">{item.title}</span>
-                <span className="font-bold text-xl ">
-                  {getDiscountedPrice(item.price, item.discountPercentage) *
-                    item.quantity}
-                  $
-                </span>
+                <span className="font-semibold">{item.title}</span>
               </div>
+              <span className="font-bold text-lg whitespace-nowrap">
+                $
+                {getDiscountedPrice(item.price, item.discountPercentage) *
+                  item.quantity}
+              </span>
             </li>
-          </ul>
-        ))}
-        <div className="flex justify-between font-bold text-lg mt-4 mr-13">
+          ))}
+        </ul>
+        <div className="flex justify-between font-bold text-xl pt-4">
           <span>Total:</span>
-          <span>{totalPrice}$</span>
+          <span>${totalPrice}</span>
         </div>
       </div>
     </div>

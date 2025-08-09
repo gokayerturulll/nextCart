@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className=" w-full bg-gray-100 text-center py-8">
-      <ul className="flex justify-center gap-4 text-[18px]">
+    <footer className=" w-full bg-gray-100  py-8">
+      <ul className="flex flex-nowrap justify-center items-center gap-x-3 md:gap-x-6 text-sm md:text-[15px] px-3">
         <li>
           <a href="#" className="hover:text-gray-700">
             © 2025 NextCart | Alttantire

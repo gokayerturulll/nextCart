@@ -23,7 +23,7 @@ body {
 }
 
 .prev-next-buttons {
-  @apply absolute  top-1/2 -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow cursor-pointer hover:scale-110 hover:shadow-xl  transition-transform duration-300;
+  @apply absolute  top-1/2 -translate-y-1/2 z-10 bg-gray-100 p-2 rounded-full shadow cursor-pointer hover:scale-110 hover:shadow-xl  transition-transform duration-300;
 }
 .category-button {
   @apply cursor-pointer hover:bg-gray-100 hover:text-gray-800 px-2;
