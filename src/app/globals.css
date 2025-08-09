@@ -9,7 +9,7 @@ body {
   @apply bg-gray-100 border border-gray-300  p-4 shadow-2xl  transition-transform duration-300 hover:scale-105 flex flex-col cursor-pointer h-[auto] w-[full];
 }
 .card-img {
-  @apply bg-gray-100 w-full min-h-[300px] max-h-full  object-cover rounded-xl;
+  @apply bg-gray-100 w-full aspect-square object-cover rounded-xl mb-4;
 }
 .product-info {
   @apply text-black flex flex-col   w-full text-center text-lg;

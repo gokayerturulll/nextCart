@@ -68,7 +68,7 @@ export default function HomePage() {
 
       {/* products */}
       <div className="container mx-auto p-4  sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 mb-10">
           {popularProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

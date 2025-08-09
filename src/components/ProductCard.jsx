@@ -50,14 +50,14 @@ export default function ProductCard({ product }) {
           })}
         </div>
 
-        <div className="flex justify-evenly">
+        <div className="flex justify-evenly items-baseline">
           <p className="text-red-600 line-through">{product.price} $</p>
-          <p className="text-gray-700 text-2xl font-bold">{discountedPrice}$</p>
+          <p className="text-gray-700 text-xl md:text-2xl font-bold">{discountedPrice}$</p>
         </div>
 
-        <div className="flex justify-evenly items-center mt-2 gap-2">
+        <div className="flex justify-between items-center mt-2 gap-2">
           <Link href={`/products/${product.id}`}>
-            <button className="px-4 py-1 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700 transition cursor-pointer">
+            <button className=" w-full px-4 py-1 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700 transition cursor-pointer">
               Details
             </button>
           </Link>
