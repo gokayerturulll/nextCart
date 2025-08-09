@@ -34,7 +34,7 @@ export default function ProductPage({ params }) {
   const prevId = currentId > 0 ? currentId - 1 : null;
 
   return (
-    <div className="p-5 flex justify-center items-center ">
+    <div className="p-5 flex justify-center items-center pt-[110px] ">
       <div>
         <Link href={`/products/${prevId}`}>
           <button className="prev-next-buttons left-2 ">
@@ -49,10 +49,10 @@ export default function ProductPage({ params }) {
         </Link>
       </div>
 
-      <div className="flex  gap-10 items-center h-[600px]">
+      <div className="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
         <ProductImages images={product.images} />
 
-        <div className="rounded-xl p-3 max-w-[750px]">
+        <div className="rounded-xl p-3 w-full lg:max-w-[750px]">
           {/* title and description */}
           <div className="bg-gray-50 p-5 rounded-lg shadow mb-3">
             <div className="flex justify-between items-center mb-2">
@@ -67,7 +67,7 @@ export default function ProductPage({ params }) {
 
           {/* price and adding to cart */}
 
-          <div className="flex justify-between items-center bg-gray-50 py-4 px-5 mb-5 rounded-2xl shadow">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-gray-50 py-4 px-5 mb-5 rounded-2xl shadow">
             {/* price */}
             <div className="flex gap-5">
               <span
@@ -94,9 +94,9 @@ export default function ProductPage({ params }) {
             <div className="flex gap-3 mb-2 items-center">
               <button
                 onClick={() => addToCart(product)}
-                className=" inline-block text-gray-200 bg-gray-800 rounded-xl px-3 py-2 text-lg font-bold cursor-pointer"
+                className=" w-full sm:w-auto text-gray-200 bg-gray-800 rounded-xl px-5 py-2 text-lg font-bold cursor-pointer hover:bg-black transition"
               >
-                Sepete Ekle
+                Add to Cart
               </button>
             </div>
           </div>
@@ -106,7 +106,7 @@ export default function ProductPage({ params }) {
             <h2 className="text-2xl font-bold mx-4">Comments</h2>
             {product.reviews.map((review, index) => (
               <div key={index} className="py-3  mb-2 mx-5 border-b">
-                <div className=" text-black flex gap-2 items-center text-center">
+                <div className=" text-black flex flex-wrap items-center gap-x-4 gap-y-1">
                   <div className="flex items-center gap-2 my-1">
                     {Array.from({ length: 5 }).map((_, i) => {
                       if (review.rating >= i + 1) {

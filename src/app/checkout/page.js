@@ -38,7 +38,7 @@ export default function CheckoutPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Required alanları kontrol et
+    
     if (
       !form.email ||
       !form.firstName ||
@@ -59,7 +59,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="max-w-full mx-auto py-10 flex justify-center gap-4">
+    <div className="max-w-full mx-auto py-10 flex justify-center gap-4 pt-[100px]">
       {/* Checkout form */}
       <form
         className="flex flex-col gap-5 bg-white p-6 rounded-2xl shadow w-[500px]"

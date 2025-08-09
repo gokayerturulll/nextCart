@@ -1,11 +1,12 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap");
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  @apply font-sans;
 }
 
 .item-card {
-  @apply bg-gray-100 border border-gray-300  p-4 shadow-2xl  transition-transform duration-300 hover:scale-107 flex flex-col cursor-pointer h-[500px] w-[300px];
+  @apply bg-gray-100 border border-gray-300  p-4 shadow-2xl  transition-transform duration-300 hover:scale-105 flex flex-col cursor-pointer h-[auto] w-[full];
 }
 .card-img {
   @apply bg-gray-100 w-full min-h-[300px] max-h-full  object-cover rounded-xl;
@@ -18,7 +19,7 @@ body {
 }
 
 .category-titles {
-  @apply bg-gray-800 rounded-2xl text-5xl text-gray-100 p-4 font-bold text-center;
+  @apply bg-gray-800 rounded-2xl text-3xl sm:text-4xl lg:text-5xl text-gray-100 p-4 font-bold text-center;
 }
 
 .prev-next-buttons {
@@ -33,4 +34,8 @@ body {
 }
 .checkout-form {
   @apply w-full border border-gray-300 p-3 rounded-xl focus:border-2 focus:border-gray-600;
+}
+
+.advantages {
+  @apply flex flex-col bg-gray-100 py-8 px-4 h-[150px];
 }

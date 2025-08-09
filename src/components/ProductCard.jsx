@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { useCart } from "@/context/CartContext";

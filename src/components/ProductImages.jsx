@@ -15,7 +15,7 @@ export default function ProductImages({ images }) {
   };
 
   return (
-    <div className="relative h-[600px] w-[470px] mx-auto">
+    <div className="relative w-full max-w-lg mx-auto h-3/4">
       <img
         src={images[current]}
         alt={`image-${current}`}

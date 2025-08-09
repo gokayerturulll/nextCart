@@ -10,10 +10,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">
-      <body className="bg-gray-100 flex flex-col items-center min-h-screen">
+      <body className="bg-white flex flex-col items-center min-h-screen">
         <CartProvider>
           <Header />
-          <main className=" flex-grow container  pt-[110px] p-4">
+          <main className=" flex-grow w-full   py-4">
             {children}
           </main>
           <Footer />
