@@ -1,36 +1,33 @@
+import Link from "next/link";
 export default function Footer() {
   return (
     <footer className=" w-full bg-gray-100  py-8">
       <ul className="flex flex-nowrap justify-center items-center gap-x-3 md:gap-x-6 text-sm md:text-[15px] px-3">
         <li>
-          <a href="#" className="hover:text-gray-700">
+          <Link href="/" className="hover:text-gray-700">
             © 2025 NextCart | Alttantire
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="hover:text-gray-700">
+          <Link href="/refund-policy" className="hover:text-gray-700">
             Refund Policy
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="hover:text-gray-700">
+          <Link href="/privacy-policy" className="hover:text-gray-700">
             Privacy Policy
-          </a>
+          </Link>
         </li>
+
         <li>
-          <a href="#" className="hover:text-gray-700">
-            Terms of Service
-          </a>
-        </li>
-        <li>
-          <a href="#" className="hover:text-gray-700">
+          <Link href="/shipping-policy" className="hover:text-gray-700">
             Shipping Policy
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="hover:text-gray-700">
+          <Link href="/contact" className="hover:text-gray-700">
             Contact
-          </a>
+          </Link>
         </li>
       </ul>
     </footer>

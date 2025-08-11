@@ -5,7 +5,8 @@ import React, { useEffect, useState } from "react";
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
-
+  const [email, setEmail] = useState("");
+  const [showMsg, setShowMsg] = useState(false);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -20,6 +21,16 @@ export default function HomePage() {
     };
     fetchProducts();
   }, []);
+
+  const successfullySubscribed = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (email.trim() !== "") {
+      setShowMsg(true);
+      setEmail("");
+      setTimeout(() => setShowMsg(false), 3000);
+    }
+  };
 
   const mainCategories = [
     "mens-shirts",
@@ -82,16 +93,28 @@ export default function HomePage() {
             Get 10% off on your first order and stay up-to-date with our latest
             news.
           </p>
-          <div className="mt-6 max-w-md mx-auto flex">
+
+          {showMsg && (
+            <div className="mt-4 bg-green-100 text-green-800 px-4 py-2 rounded-md shadow-sm inline-block">
+              Successfully subscribed to our newsletter! 🎉
+            </div>
+          )}
+
+          <form className="mt-6 max-w-md mx-auto flex">
             <input
               type="email"
               placeholder="Enter your email"
               className="w-full border border-gray-300 px-4 py-2  outline-none focus:border-2 focus:border-gray-600"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <button className="bg-black text-white font-semibold px-6 py-3  hover:bg-gray-800 cursor-pointer">
+            <button
+              onClick={successfullySubscribed}
+              className="bg-black text-white font-semibold px-6 py-3  hover:bg-gray-800 cursor-pointer"
+            >
               Subscribe
             </button>
-          </div>
+          </form>
         </div>
 
         {/* ADVANTAGES */}

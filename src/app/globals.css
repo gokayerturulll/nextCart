@@ -39,3 +39,18 @@ body {
 .advantages {
   @apply flex flex-col bg-gray-100 py-8 px-4 h-[150px];
 }
+
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.4s ease-out;
+}
