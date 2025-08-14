@@ -2,7 +2,17 @@
 import axios from "axios";
 import ProductCard from "@/components/ProductCard";
 import React, { useEffect, useState } from "react";
-
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [email, setEmail] = useState("");
@@ -69,11 +79,11 @@ export default function HomePage() {
           <p className="text-white text-xl  mt-4 mb-6 drop-shadow-lg">
             The latest trends are just a click away.
           </p>
-          <a href="products">
-            <button className="bg-gray-100 text-black font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition-colors duration-300 cursor-pointer">
+          <Link href="products">
+            <Button variant="secondary" className="font-bold px-8 py-6 text-lg">
               Shop Now
-            </button>
-          </a>
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -87,58 +97,70 @@ export default function HomePage() {
 
         {/* email */}
 
-        <div className="bg-gray-100 mt-10 py-16 max-w-full mx-auto text-center px-4 ">
+        <div className="bg-gray-50 shadow-lg mt-10 py-16 max-w-full mx-auto text-center px-4 ">
           <h2 className="text-3xl font-bold">Join Our Newsletter</h2>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2   text-gray-600">
             Get 10% off on your first order and stay up-to-date with our latest
             news.
           </p>
 
           {showMsg && (
-            <div className="mt-4 bg-green-100 text-green-800 px-4 py-2 rounded-md shadow-sm inline-block">
-              Successfully subscribed to our newsletter! 🎉
+            <div className="mt-4 flex justify-center">
+              <Alert className="bg-green-50 border-green-200 text-green-800 w-fit">
+                <AlertDescription>
+                  Successfully subscribed to our newsletter! 🎉
+                </AlertDescription>
+              </Alert>
             </div>
           )}
 
-          <form className="mt-6 max-w-md mx-auto flex">
-            <input
+          <form
+            onSubmit={successfullySubscribed}
+            className="mt-6 max-w-md mx-auto flex gap-1"
+          >
+            <Input
               type="email"
               placeholder="Enter your email"
-              className="w-full border border-gray-300 px-4 py-2  outline-none focus:border-2 focus:border-gray-600"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="flex-1"
             />
-            <button
-              onClick={successfullySubscribed}
-              className="bg-black text-white font-semibold px-6 py-3  hover:bg-gray-800 cursor-pointer"
-            >
+            <Button type="submit" className="px-6">
               Subscribe
-            </button>
+            </Button>
           </form>
         </div>
 
         {/* ADVANTAGES */}
-        <div className="grid grid-cols-1 md:grid-cols-3 py-4 gap-2 mt-5">
-          <div className="advantages">
-            <h2 className="font-semibold mb-4">Top Quality Products</h2>
-            <span className="text-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 py-8 gap-4 mt-5">
+          <Card className="advantages">
+            <Badge variant="default" className="mb-2 text-md">
+              Top Quality Products
+            </Badge>
+            <p className="text-lg text-gray-600">
+              {" "}
               Carefully selected products designed for timeless style and
               longevity.
-            </span>
-          </div>
-
-          <div className="advantages">
-            <h2 className="font-semibold mb-4">Fast Shipping Service</h2>
-            <span className="text-lg">
-              Place your order and meet the incredible speed of NextCart
-            </span>
-          </div>
-          <div className="advantages ">
-            <h2 className="font-semibold mb-4">Free Shipping Advantage</h2>
-            <span className="text-lg">
-              Get free shipping on your puchases over 100$
-            </span>
-          </div>
+            </p>
+          </Card>
+          <Card className="advantages">
+            <Badge variant="default" className="mb-2 text-md">
+              Fast Shipping Service
+            </Badge>
+            <p className="text-lg text-gray-600">
+              {" "}
+              Place your order and meet the incredible speed of NextCart.
+            </p>
+          </Card>
+          <Card className="advantages">
+            <Badge variant="default" className="mb-2 text-md">
+              Free Shipping Advantage
+            </Badge>
+            <p className="text-lg text-gray-600">
+              {" "}
+              Get free shipping on your puchases over 100$.
+            </p>
+          </Card>
         </div>
       </div>
     </div>

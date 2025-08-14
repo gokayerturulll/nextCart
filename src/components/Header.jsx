@@ -10,12 +10,15 @@ import {
   FaStore,
   FaSearch,
 } from "react-icons/fa";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export default function Header() {
   const router = useRouter();
   const { cart } = useCart();
   const [searchTerm, setSearchTerm] = useState("");
-  
+
   let totalProducts = 0;
   for (const item of cart) {
     totalProducts += item.quantity;
@@ -28,39 +31,35 @@ export default function Header() {
   };
 
   return (
-    
     <header className="bg-gray-800 text-white w-full fixed top-0 z-50 shadow-md h-auto lg:h-[90px] py-3 lg:py-4">
-      
-      
       <nav className="grid grid-rows-2 lg:grid-rows-1 grid-cols-[1fr_auto] lg:grid-cols-[auto_1fr_auto] items-center h-full mx-4 lg:mx-10 gap-x-4 lg:gap-x-8">
-        
-       
-        <Link href="/" className="flex items-center gap-2 text-2xl lg:text-[32px] col-start-1 row-start-1">
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-2xl lg:text-[32px] col-start-1 row-start-1"
+        >
           <FaStore size={32} />
           <span className="hidden lg:inline">NextCart</span>
         </Link>
 
-        
         <form
           className="flex items-center gap-2 w-full max-w-[700px] mx-auto row-start-2 col-start-1 col-span-2 lg:row-start-auto lg:col-start-auto lg:col-span-1 mt-2 lg:mt-0"
           onSubmit={handleSearch}
         >
-          <input
-            type="text"
+          <Input
             placeholder="Search products..."
-            className="w-full px-4 py-2 rounded-lg text-white bg-gray-700 outline-none text-base"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            className="bg-gray-700 text-white"
           />
-          <button
+          <Button
             type="submit"
-            className="header-icons p-2 rounded-lg text-white cursor-pointer"
+            variant=" ghost"
+            className="w-10 h-10 p-2 cursor-pointer"
           >
-            <FaSearch size={28} />
-          </button>
+            <FaSearch />
+          </Button>
         </form>
 
-        
         <div className="flex items-center gap-4 lg:gap-6 col-start-2 row-start-1 lg:col-start-3">
           <Link className="header-icons" href="/products" title="All Products">
             <FaBoxes size={30} />
@@ -69,9 +68,9 @@ export default function Header() {
             <div className="relative">
               <FaShoppingCart size={30} />
               {totalProducts > 0 && (
-                <span className="absolute -top-2 -right-3 rounded-full text-xs bg-red-600 text-gray-100 px-2 py-1">
+                <Badge className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full">
                   {totalProducts}
-                </span>
+                </Badge>
               )}
             </div>
           </Link>
