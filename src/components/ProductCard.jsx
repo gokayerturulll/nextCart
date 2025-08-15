@@ -40,7 +40,7 @@ export default function ProductCard({ product }) {
     <>
       <Link href={`/products/${product.id}`}>
         <Card className="item-card relative ">
-          <span className="absolute right-2 top-2">
+          <span className="absolute right-2 top-2 px-2">
             <Badge
               variant="secondary"
               className={
@@ -96,7 +96,7 @@ export default function ProductCard({ product }) {
             </div>
           </CardContent>
 
-          <CardFooter className="flex justify-center items-center mt-2 gap-2">
+          <CardFooter className="flex justify-center items-center mx-2 mt-2 gap-2">
             <Button
               variant="default"
               className="w-full flex justify-center items-center gap-2 cursor-pointer"

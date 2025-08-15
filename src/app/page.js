@@ -46,14 +46,8 @@ export default function HomePage() {
     "mens-shirts",
     "womens-dresses",
     "womens-bags",
-    // "mens-shoes",
     "mens-watches",
-    // "womens-watches",
-
     "womens-shoes",
-
-    // "womens-jewellery",
-    // "sunglasses",
   ];
 
   const mainPageProducts = products.filter((product) =>
